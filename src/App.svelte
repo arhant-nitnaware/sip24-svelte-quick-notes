@@ -11,6 +11,13 @@
     selectPage(pages.length ? pages.length - 1 : 0)
   }
 
+  function deleteNote(title){
+    console.log(title, pages.indexOf(title))
+    pages.splice(pages.indexOf(title),1)
+    pages = pages
+    localStorage.setItem('pages', JSON.stringify(pages))
+  }
+
   function saveNote(){
     const storePageName = pages[currentPageIndex]
     if(storePageName != title){
@@ -63,7 +70,10 @@
 <main class="p-4 ml-60 h-auto">
   <div class="grid grid-cols-2 items-center mb-3">
     <h1 class="text-2xl font-bold" contenteditable bind:textContent={title}>{title || "new page"}</h1>
-    <button class="rounded text-white bg-gray-800 px-10 py-1 border border-black ml-auto hover:bg-gray-900" on:click={saveNote}>save</button>
+    <div class="ml-auto">
+      <button class="rounded text-white bg-red-800 px-10 py-1 border border-black  hover:bg-gray-900" on:click={()=>deleteNote(title)}>delete</button>
+      <button class="rounded text-white bg-blue-950 px-10 py-1 border border-black hover:bg-gray-900" on:click={saveNote}>save</button>
+    </div>
   </div>
   <hr/>
   <!-- <input class="block w-full border rounded-lg p-2.5 mt-2" bind:value={title} type="Text"> -->
