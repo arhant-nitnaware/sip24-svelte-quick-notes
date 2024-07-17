@@ -12,7 +12,7 @@
   }
 
   function deleteNote(title){
-    console.log(title, pages.indexOf(title))
+    localStorage.removeItem(title)
     pages.splice(pages.indexOf(title),1)
     pages = pages
     localStorage.setItem('pages', JSON.stringify(pages))
